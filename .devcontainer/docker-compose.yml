@@ -1,0 +1,23 @@
+version: "3.8"
+
+services: 
+  
+  website:
+    container_name: cineclube-geektoopia-website
+    build: .
+    volumes:
+      - ../:/workspace
+    ports:
+      - 8000:8000
+    depends_on: 
+      - database
+    command: sleep infinity
+
+  database:
+    container_name: cineclube-geektoopia-database
+    image: mysql
+    volumes: 
+      - ../data:/var/lib/mysql
+    environment: 
+      MYSQL_ROOT_PASSWORD: 'cineclube'
+    restart: always
